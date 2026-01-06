@@ -1,0 +1,1537 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bank Sampah Neon Hijau</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #e6ffe6;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #001100 0%, #003300 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Variabel Tema Neon Hijau */
+        :root {
+            --primary-dark: #001a00;
+            --primary-neon: #00ff00;
+            --secondary-glow: #39ff14;
+            --accent-cyan: #00ff9d;
+            --accent-purple: #9d00ff;
+            --dark-abyss: #001100;
+            --mid-ocean: #003300;
+            --light-foam: #f8fff8;
+            --text-light: #e6ffe6;
+            --text-muted: #a3ffa3;
+            --neon-glow: 0 0 20px rgba(0, 255, 0, 0.8), 0 0 40px rgba(57, 255, 20, 0.6);
+            --soft-glow: 0 0 15px rgba(0, 255, 0, 0.4);
+            --shadow-deep: 0 5px 15px rgba(0, 0, 0, 0.3);
+            --transition-all: all 0.3s ease;
+            --border-radius: 12px;
+            --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        
+        /* Container Responsif */
+        .container {
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        @media (min-width: 576px) {
+            .container {
+                max-width: 540px;
+                padding: 0 20px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+                padding: 0 25px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .container {
+                max-width: 960px;
+                padding: 0 30px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+        }
+        
+        /* Header Mobile-Friendly */
+        header {
+            background: rgba(0, 17, 0, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.2);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+        
+        .logo-icon {
+            font-size: 1.8rem;
+            color: var(--secondary-glow);
+            filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.7));
+        }
+        
+        .logo-text h1 {
+            font-size: 1.4rem;
+            margin: 0;
+            line-height: 1.2;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .logo-text span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            color: var(--secondary-glow);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+        
+        .mobile-menu-btn:hover {
+            background: rgba(0, 255, 0, 0.2);
+            transform: scale(1.05);
+        }
+        
+        /* Mobile Navigation */
+        .mobile-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 17, 0, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 9999;
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 80px 20px 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .mobile-nav.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-nav-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            color: var(--secondary-glow);
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .mobile-nav-links {
+            list-style: none;
+            margin-top: 30px;
+        }
+        
+        .mobile-nav-links li {
+            margin-bottom: 10px;
+        }
+        
+        .mobile-nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            background: rgba(0, 255, 0, 0.05);
+            border-radius: 12px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition-all);
+            border: 1px solid transparent;
+        }
+        
+        .mobile-nav-links a i {
+            color: var(--secondary-glow);
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .mobile-nav-links a:hover,
+        .mobile-nav-links a.active {
+            background: rgba(0, 255, 0, 0.1);
+            border-color: rgba(0, 255, 0, 0.3);
+            transform: translateX(5px);
+        }
+        
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding-bottom: 20px;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        /* Hero Section Mobile */
+        .hero {
+            padding: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(0, 255, 0, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2rem;
+            background: linear-gradient(90deg, var(--secondary-glow), var(--primary-neon));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+        
+        .hero-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        /* Button Styles for Mobile */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary-neon), var(--secondary-glow));
+            color: var(--dark-abyss);
+            padding: 16px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition-all);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            box-shadow: var(--soft-glow);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--neon-glow);
+        }
+        
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+        }
+        
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 1.8rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary-glow), var(--primary-neon));
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 100%;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .about-text h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-glow);
+            margin-bottom: 20px;
+        }
+        
+        .about-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--neon-glow);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .service-card {
+            background: rgba(0, 51, 0, 0.6);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-deep);
+            transition: var(--transition-all);
+            border: 1px solid rgba(0, 255, 0, 0.1);
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--soft-glow);
+            border-color: rgba(0, 255, 0, 0.3);
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, var(--primary-dark), var(--mid-ocean));
+            color: var(--secondary-glow);
+            font-size: 2.5rem;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            font-size: 1.3rem;
+            color: var(--secondary-glow);
+            margin-bottom: 15px;
+        }
+        
+        /* Waste Types */
+        .waste-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        
+        .waste-card {
+            background: rgba(0, 51, 0, 0.6);
+            border-radius: var(--border-radius);
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: var(--shadow-deep);
+            transition: var(--transition-all);
+            border: 1px solid rgba(0, 255, 0, 0.1);
+        }
+        
+        .waste-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--soft-glow);
+        }
+        
+        .waste-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-glow);
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.5));
+        }
+        
+        .waste-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+        }
+        
+        /* Pricing Table */
+        .price-table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 0 -15px;
+            padding: 0 15px;
+        }
+        
+        .price-table {
+            width: 100%;
+            min-width: 600px;
+            border-collapse: collapse;
+        }
+        
+        .price-table th {
+            background: linear-gradient(90deg, var(--primary-dark), var(--mid-ocean));
+            color: var(--text-light);
+            font-weight: 600;
+            padding: 15px 10px;
+            text-align: left;
+            border-bottom: 2px solid rgba(0, 255, 0, 0.3);
+        }
+        
+        .price-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+            color: var(--text-muted);
+        }
+        
+        .price-highlight {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+        
+        /* Contact Form */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .contact-info, .contact-form {
+            width: 100%;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .contact-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-glow);
+            font-size: 1.3rem;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--secondary-glow);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(0, 17, 0, 0.7);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 1rem;
+            transition: var(--transition-all);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-glow);
+            box-shadow: 0 0 0 2px rgba(0, 255, 0, 0.2);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Footer Mobile */
+        footer {
+            background: linear-gradient(to bottom, rgba(0, 17, 0, 0.9), rgba(0, 17, 0, 1));
+            padding: 50px 0 30px;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            color: var(--secondary-glow);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            position: relative;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary-glow), var(--primary-neon));
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 50%;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition-all);
+            border: 1px solid rgba(0, 255, 0, 0.2);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary-glow);
+            color: var(--dark-abyss);
+            transform: translateY(-3px);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition-all);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-glow);
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(0, 255, 0, 0.1);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        /* Mobile Bottom Navigation (Sticky) */
+        .mobile-bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 17, 0, 0.95);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(0, 255, 0, 0.2);
+            padding: 10px 0 calc(10px + env(safe-area-inset-bottom, 0px));
+            z-index: 999;
+            display: none;
+        }
+        
+        .bottom-nav-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: var(--transition-all);
+            flex: 1;
+            max-width: 80px;
+        }
+        
+        .bottom-nav-item i {
+            font-size: 1.2rem;
+        }
+        
+        .bottom-nav-item span {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        
+        .bottom-nav-item.active,
+        .bottom-nav-item:hover {
+            color: var(--secondary-glow);
+            background: rgba(0, 255, 0, 0.1);
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 50%;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.3);
+            animation: float 10s infinite ease-in-out;
+            z-index: -1;
+        }
+        
+        /* Media Queries for Tablets */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-btns {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .btn {
+                width: auto;
+                min-width: 200px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .waste-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .about-content {
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .contact-container {
+                flex-direction: row;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* Media Queries for Desktops */
+        @media (min-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .waste-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .mobile-bottom-nav {
+                display: none !important;
+            }
+        }
+        
+        /* Touch Device Optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .btn, 
+            .service-card, 
+            .waste-card,
+            .mobile-nav-links a {
+                transition: none;
+            }
+            
+            .btn:active,
+            .service-card:active,
+            .waste-card:active {
+                transform: scale(0.98);
+            }
+        }
+        
+        /* Landscape Mode Optimizations */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .hero {
+                padding: 30px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .mobile-nav {
+                padding-top: 60px;
+            }
+            
+            .mobile-nav-links a {
+                padding: 12px 20px;
+            }
+        }
+        
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #000;
+            }
+        }
+        
+        /* iOS Safari Specific Fixes */
+        @supports (-webkit-touch-callout: none) {
+            .hero {
+                -webkit-backdrop-filter: blur(10px);
+            }
+            
+            input, textarea, select {
+                font-size: 16px !important;
+            }
+        }
+        
+        /* Loading States */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+        
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--secondary-glow);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>NEON HIJAU</h1>
+                    <span>Bank Sampah Premium</span>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" id="mobileNavClose">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="logo" style="margin-bottom: 30px;">
+            <div class="logo-icon">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <div class="logo-text">
+                <h1>NEON KAGUYA</h1>
+                <span>Bank Sampah PremiuM</span>
+            </div>
+        </div>
+        
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="active"><i class="fas fa-home"></i> Beranda</a></li>
+            <li><a href="#about"><i class="fas fa-info-circle"></i> Tentang</a></li>
+            <li><a href="#services"><i class="fas fa-concierge-bell"></i> Layanan</a></li>
+            <li><a href="#waste"><i class="fas fa-recycle"></i> Jenis Sampah</a></li>
+            <li><a href="#pricing"><i class="fas fa-tags"></i> Harga</a></li>
+            <li><a href="#contact"><i class="fas fa-address-book"></i> Kontak</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Transformasi Sampah, Masa Depan Bercahaya</h1>
+                    <p>Bank Sampah Neon Hijau mengubah limbah menjadi nilai dengan teknologi daur ulang mutakhir. Bergabunglah dalam revolusi pengelolaan sampah berbasis ekonomi hijau yang berkelanjutan.</p>
+                    
+                    <div class="hero-btns">
+                        <a href="#about" class="btn">
+                            <i class="fas fa-compass"></i> Jelajahi Layanan
+                        </a>
+                        <a href="#contact" class="btn btn-accent">
+                            <i class="fas fa-user-plus"></i> Daftar Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Floating elements for background effect -->
+            <div class="floating-element" style="width: 60px; height: 60px; top: 10%; left: 5%;"></div>
+            <div class="floating-element" style="width: 80px; height: 80px; bottom: 20%; right: 10%; animation-delay: -2s;"></div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Visi Neon Hijau</h2>
+                </div>
+                <div class="section-subtitle">
+                    <p>Menjadi pusat transformasi sampah terdepan yang menginspirasi perubahan dengan pendekatan ekonomi sirkular dan teknologi hijau.</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Revolusi Pengelolaan Sampah</h3>
+                        <p>Bank Sampah Neon Hijau adalah ekosistem pengelolaan sampah mutakhir yang mengintegrasikan teknologi daur ulang dengan prinsip ekonomi hijau. Didirikan pada 2020, kami telah mentransformasi lebih dari 500 ton sampah menjadi produk bernilai tinggi.</p>
+                        <p>Dengan fasilitas pengolahan berteknologi tinggi dan jaringan nasabah premium, kami menawarkan solusi holistik untuk pengelolaan limbah rumah tangga dan industri skala kecil.</p>
+                        <a href="#contact" class="btn" style="margin-top: 20px;">
+                            <i class="fas fa-users"></i> Bergabung Sekarang
+                        </a>
+                    </div>
+                    
+                    <div class="about-image">
+                        <img src="https://i.pinimg.com/1200x/d8/f7/4a/d8f74aa3b0c3b0d4fc34b4daf4a39e93.jpg" alt="Fasilitas Bank Sampah Modern" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services" id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Layanan Eksklusif</h2>
+                </div>
+                <div class="section-subtitle">
+                    <p>Kami menyediakan solusi pengelolaan sampah komprehensif dengan standar layanan premium.</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Tabungan Sampah Premium</h3>
+                            <p>Sistem tabungan digital dengan bunga kompetitif dan kemudahan penarikan dana. Setor sampah terpilah dan pantau saldo melalui aplikasi mobile.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-shuttle-van"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Penjemputan Door-to-Door</h3>
+                            <p>Layanan penjemputan sampah dengan armada khusus berpendingin untuk menjaga kualitas material. Jadwal fleksibel dan sistem pemesanan online 24/7.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-vials"></i>
+                        </div>
+                        <div class="service-content">
+                            <h3>Analisis & Konsultasi</h3>
+                            <p>Tim ahli kami akan menganalisis profil sampah Anda dan memberikan rekomendasi optimalisasi untuk meningkatkan nilai ekonomi dari limbah yang dihasilkan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Waste Types Section -->
+        <section class="waste" id="waste">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Material yang Kami Terima</h2>
+                </div>
+                <div class="section-subtitle">
+                    <p>Kami menerima berbagai jenis material untuk diproses dengan teknologi daur ulang mutakhir.</p>
+                </div>
+                
+                <div class="waste-grid">
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-prescription-bottle"></i>
+                        </div>
+                        <h3>Plastik</h3>
+                        <p>PET, HDPE, PP dengan nilai daur ulang tinggi</p>
+                    </div>
+                    
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-scroll"></i>
+                        </div>
+                        <h3>Kertas</h3>
+                        <p>Kertas kraft, karton food grade, majalah</p>
+                    </div>
+                    
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-glass-whiskey"></i>
+                        </div>
+                        <h3>Kaca</h3>
+                        <p>Botol kaca, kaca jendela, keramik khusus</p>
+                    </div>
+                    
+                    <div class="waste-card">
+                        <div class="waste-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3>Elektronik</h3>
+                        <p>PCB, komponen, logam mulia, kabel</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing" id="pricing">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Harga Material</h2>
+                </div>
+                <div class="section-subtitle">
+                    <p>Harga transparan berdasarkan kualitas dan kemurnian material.</p>
+                </div>
+                
+                <div class="price-table-container">
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th>Jenis Material</th>
+                                <th>Kualitas</th>
+                                <th>Harga/kg</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Plastik PET</td>
+                                <td>Grade A</td>
+                                <td class="price-highlight">Rp 8.500</td>
+                            </tr>
+                            <tr>
+                                <td>Plastik HDPE</td>
+                                <td>Grade A</td>
+                                <td class="price-highlight">Rp 7.200</td>
+                            </tr>
+                            <tr>
+                                <td>Kardus Food Grade</td>
+                                <td>Premium</td>
+                                <td class="price-highlight">Rp 4.800</td>
+                            </tr>
+                            <tr>
+                                <td>Aluminium</td>
+                                <td>Premium</td>
+                                <td class="price-highlight">Rp 25.000</td>
+                            </tr>
+                            <tr>
+                                <td>Tembaga Kabel</td>
+                                <td>Grade AA</td>
+                                <td class="price-highlight">Rp 68.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Hubungi Kami</h2>
+                </div>
+                <div class="section-subtitle">
+                    <p>Tim konsultan kami siap membantu mengoptimalkan nilai dari material daur ulang Anda.</p>
+                </div>
+                
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Lokasi Kami</h4>
+                                <p>Eco Business Park Blok A-12<br>Jakarta Selatan 12190</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Telepon</h4>
+                                <p>1500-888 (24/7)<br>+62 21 2985 7341</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@neonhijau.id<br>support@neonhijau.id</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3 style="margin-bottom: 20px; color: var(--secondary-glow);">Formulir Pendaftaran</h3>
+                        <form id="registrationForm">
+                            <div class="form-group">
+                                <label for="name">Nama Lengkap</label>
+                                <input type="text" id="name" name="name" placeholder="Masukkan nama lengkap" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="email@domain.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">Nomor Telepon</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+62 xxx xxxx xxxx" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="waste-type">Jenis Sampah Utama</label>
+                                <select id="waste-type" name="waste-type" required>
+                                    <option value="">Pilih jenis sampah</option>
+                                    <option value="plastik">Plastik</option>
+                                    <option value="kertas">Kertas</option>
+                                    <option value="logam">Logam</option>
+                                    <option value="campuran">Campuran</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">
+                                <i class="fas fa-paper-plane"></i> Kirim Pendaftaran
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Neon Hijau</h3>
+                    <p>Mengubah sampah menjadi sumber daya bernilai melalui teknologi daur ulang mutakhir.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Navigasi</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Beranda</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> Tentang</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Layanan</a></li>
+                        <li><a href="#waste"><i class="fas fa-chevron-right"></i> Jenis Sampah</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Layanan</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Tabungan Sampah</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Penjemputan</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Konsultasi</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Pelatihan</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Jakarta Selatan</a></li>
+                        <li><a href="tel:1500888"><i class="fas fa-phone"></i> 1500-888</a></li>
+                        <li><a href="mailto:info@neonhijau.id"><i class="fas fa-envelope"></i> info@neonhijau.id</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> 07.00-21.00 WIB</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2020 Bank Sampah Neon Hijau. Hak cipta dilindungi.</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">Designed for Mobile First Experience</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav" id="mobileBottomNav">
+        <div class="bottom-nav-container">
+            <a href="#home" class="bottom-nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
+            </a>
+            <a href="#services" class="bottom-nav-item">
+                <i class="fas fa-concierge-bell"></i>
+                <span>Layanan</span>
+            </a>
+            <a href="#waste" class="bottom-nav-item">
+                <i class="fas fa-recycle"></i>
+                <span>Sampah</span>
+            </a>
+            <a href="#contact" class="bottom-nav-item">
+                <i class="fas fa-phone"></i>
+                <span>Kontak</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        const mobileNavClose = document.getElementById('mobileNavClose');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+        const mobileBottomNav = document.getElementById('mobileBottomNav');
+        const bottomNavItems = document.querySelectorAll('.bottom-nav-item');
+        
+        // Toggle mobile navigation
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        mobileNavClose.addEventListener('click', () => {
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Close mobile nav when clicking on links
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Update active state
+                mobileNavLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                // Update bottom nav active state
+                const targetId = link.getAttribute('href');
+                bottomNavItems.forEach(item => {
+                    if (item.getAttribute('href') === targetId) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            });
+        });
+        
+        // Bottom navigation click handler
+        bottomNavItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = item.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active state
+                    bottomNavItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    
+                    // Update mobile nav active state
+                    mobileNavLinks.forEach(link => {
+                        if (link.getAttribute('href') === targetId) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Show/hide bottom navigation based on scroll
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            // Show bottom nav only on mobile and when not at the very bottom
+            if (window.innerWidth < 768) {
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // Scrolling down
+                    mobileBottomNav.style.display = 'block';
+                    setTimeout(() => {
+                        mobileBottomNav.style.opacity = '1';
+                        mobileBottomNav.style.transform = 'translateY(0)';
+                    }, 10);
+                } else if (scrollTop < lastScrollTop || scrollTop <= 100) {
+                    // Scrolling up or at top
+                    mobileBottomNav.style.opacity = '0';
+                    mobileBottomNav.style.transform = 'translateY(100%)';
+                }
+                
+                // Hide at bottom of page
+                if (scrollTop + windowHeight >= documentHeight - 100) {
+                    mobileBottomNav.style.opacity = '0';
+                    mobileBottomNav.style.transform = 'translateY(100%)';
+                }
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+        
+        // Form submission with mobile-friendly feedback
+        const registrationForm = document.getElementById('registrationForm');
+        if (registrationForm) {
+            registrationForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const submitBtn = registrationForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Show success message
+                const name = document.getElementById('name').value;
+                showMobileNotification(`Terima kasih ${name}! Pendaftaran berhasil. Kami akan menghubungi Anda dalam 1x24 jam.`);
+                
+                // Reset form
+                registrationForm.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+            });
+        }
+        
+        // Mobile-friendly notification function
+        function showMobileNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%) translateY(-100px);
+                background: rgba(0, 51, 0, 0.95);
+                color: var(--text-light);
+                padding: 15px 20px;
+                border-radius: 10px;
+                border: 1px solid var(--secondary-glow);
+                box-shadow: var(--neon-glow);
+                z-index: 9999;
+                text-align: center;
+                max-width: 90%;
+                width: 90%;
+                backdrop-filter: blur(10px);
+                transition: transform 0.3s ease;
+            `;
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: var(--secondary-glow); font-size: 1.2rem;"></i>
+                    <span>${message}</span>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(-50%) translateY(0)';
+            }, 10);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(-50%) translateY(-100px)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // Touch gesture for closing mobile nav by swiping
+        let touchStartX = 0;
+        mobileNav.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        mobileNav.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const diffX = touchEndX - touchStartX;
+            
+            if (diffX < -100) { // Swipe left to close
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Prevent zoom on double-tap for better mobile experience
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, { passive: false });
+        
+        // Optimize images for mobile
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (!img.hasAttribute('loading')) {
+                    img.setAttribute('loading', 'lazy');
+                }
+            });
+        });
+        
+        // Handle device orientation changes
+        window.addEventListener('orientationchange', () => {
+            // Close mobile nav on orientation change
+            if (mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Force resize to fix any layout issues
+            setTimeout(() => {
+                window.dispatchEvent(new Event('resize'));
+            }, 100);
+        });
+        
+        // Initialize bottom nav on mobile
+        if (window.innerWidth < 768) {
+            mobileBottomNav.style.display = 'block';
+        }
+        
+        // Update active nav based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    // Update bottom nav
+                    bottomNavItems.forEach(item => {
+                        if (item.getAttribute('href') === `#${sectionId}`) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+                    
+                    // Update mobile nav
+                    mobileNavLinks.forEach(link => {
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Click outside to close mobile nav
+        document.addEventListener('click', (e) => {
+            if (mobileNav.classList.contains('active') && 
+                !mobileNav.contains(e.target) && 
+                e.target !== mobileMenuBtn) {
+                mobileNav.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>
